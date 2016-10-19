@@ -46,13 +46,7 @@ public class CalculatorActivity extends AppCompatActivity implements SensorEvent
         }
     };
     private Sensor accelerom;
-    private View.OnHoverListener listener = new View.OnHoverListener() {
-        @Override
-        public boolean onHover(View v, MotionEvent event) {
-            
-            return false;
-        }
-    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +65,20 @@ public class CalculatorActivity extends AppCompatActivity implements SensorEvent
         }
 
         accelerom = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        plusButton.setOnHoverListener(listener);
+        plusButton.setOnTouchListener(new View.OnTouchListener() {
+         public boolean onTouch( View yourButton , MotionEvent theMotion ) {
+            switch ( theMotion.getAction() ) {
+                case MotionEvent.ACTION_DOWN:
+                    //Start information writing here
+                    break;
+                case MotionEvent.ACTION_UP:
+                    //End information writing here
+                    break;
+            }
+            return true;
+        }
+        }
+        );
     }
 
     @Override
